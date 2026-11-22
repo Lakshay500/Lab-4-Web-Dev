@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema(
       trim: true,
       match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Email is invalid'],
     },
-    password: { type: String, required: true, select: false }, // bcrypt hash only
+    password: { type: String, required: true, select: false },
     role: { type: String, enum: ['user', 'admin'], default: 'user' },
   },
   { timestamps: true }
