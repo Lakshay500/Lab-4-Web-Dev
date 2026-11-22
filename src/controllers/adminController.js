@@ -18,5 +18,4 @@ exports.setRole = asyncHandler(async (req, res) => {
   res.json({ message: 'Role updated', user });
 });
 
-// Counters maintained by EventEmitter listeners
 exports.eventStats = (req, res) => res.json(stats);
