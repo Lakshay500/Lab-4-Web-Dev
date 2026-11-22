@@ -8,7 +8,6 @@ const checkId = (id) => {
   if (!mongoose.isValidObjectId(id)) throw new AppError('Invalid note id', 400);
 };
 
-// Users only ever see their own notes; admins may access any note
 const scope = (req, id) => (req.user.role === 'admin' ? { _id: id } : { _id: id, owner: req.user._id });
 
 exports.createNote = asyncHandler(async (req, res) => {
