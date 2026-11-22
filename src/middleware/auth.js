@@ -3,7 +3,6 @@ const AppError = require('../utils/AppError');
 const asyncHandler = require('../utils/asyncHandler');
 const { verify, extract } = require('../utils/token');
 
-// Protected-route guard: verifies the JWT and loads the user
 exports.authenticate = asyncHandler(async (req, res, next) => {
   const token = extract(req.headers);
   if (!token) throw new AppError('No token provided', 403);
@@ -21,7 +20,6 @@ exports.authenticate = asyncHandler(async (req, res, next) => {
   next();
 });
 
-// Role-based access control: authorize('admin')
 exports.authorize =
   (...roles) =>
   (req, res, next) => {
