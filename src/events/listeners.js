@@ -25,7 +25,6 @@ module.exports = () => {
     console.log(`[event ${stamp()}] chat:message -> #${msg.room} (${stats.chatMessages} total)`);
   });
 
-  // Safety net: an 'error' event with no listener would crash the process
   appEvents.on('error', (err) => console.error('[event error]', err.message));
 };
 
