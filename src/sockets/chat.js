@@ -9,8 +9,6 @@ const ROOM_RE = /^[a-zA-Z0-9_-]{1,30}$/;
 module.exports = (httpServer) => {
   const io = new Server(httpServer);
 
-  // Handshake authentication: connection is refused without a valid JWT.
-  // Token may be sent as io({ auth: { token } }), a Bearer header, or the login cookie.
   io.use(async (socket, next) => {
     try {
       const token = socket.handshake.auth?.token || extract(socket.handshake.headers);
@@ -36,7 +34,7 @@ module.exports = (httpServer) => {
       socket.to(room).emit('room:notice', { room, text: `${socket.user.username} joined` });
     };
 
-    join('general'); // everyone starts in #general
+    join('general');
 
     socket.on('room:join', ({ room } = {}) => join(room));
 
