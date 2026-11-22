@@ -7,8 +7,6 @@ exports.sign = (user) =>
 
 exports.verify = (token) => jwt.verify(token, process.env.JWT_SECRET);
 
-// Reads the JWT from "Authorization: Bearer <t>" or from a "token" cookie.
-// Cookies are parsed by hand because cookie-parser is not an allowed library.
 exports.extract = (headers = {}) => {
   const auth = headers.authorization || '';
   if (auth.startsWith('Bearer ')) return auth.slice(7).trim();
