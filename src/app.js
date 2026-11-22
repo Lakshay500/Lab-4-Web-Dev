@@ -5,7 +5,7 @@ const { notFound, errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '..', 'public'))); // simple chat test page at /chat.html
+app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use('/api', routes);
 app.use(notFound);
 app.use(errorHandler);
